@@ -1,0 +1,14 @@
+apiVersion: skaffold/v2beta26
+kind: Config
+metadata:
+  name: git-ops
+build:
+  artifacts:
+  - image: gcr.io/$PROJECT_ID/sanket-gitops-image
+    docker:
+      dockerfile: Dockerfile
+deploy:
+  kubectl:
+    manifests:
+    - deployment.yaml
+  

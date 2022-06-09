@@ -1,0 +1,44 @@
+#Delivery Pipeline for our clusters
+
+apiVersion: deploy.cloud.google.com/v1
+kind: DeliveryPipeline
+metadata:
+ name: gitops
+description: main application pipeline
+serialPipeline:
+  stages:
+  - targetId: qsdev
+  - targetId: qsprod
+---
+
+#Our 1st Cluster TARGET
+apiVersion: deploy.cloud.google.com/v1
+kind: Target
+metadata:
+ name: qsdev
+description: development cluster
+gke:
+ cluster:  projects/$PROJECT_ID/locations/asia-east1-a/clusters/sanket-test-cluster
+executionConfigs:
+- defaultPool:
+    serviceAccount: gke-sa@searce-playground-v1.iam.gserviceaccount.com
+  usages:
+  - RENDER 
+  - DEPLOY   
+---
+#Our 2st Cluster TARGET
+
+apiVersion: deploy.cloud.google.com/v1
+kind: Target
+metadata:
+ name: qsprod
+description: production cluster
+requireApproval: true
+gke:
+ cluster:  projects/$PROJECT_ID//locations/asia-east1-a/clusters/sanket-prod-cluster
+executionConfigs:
+- defaultPool:
+    serviceAccount: gke-sa@searce-playground-v1.iam.gserviceaccount.com
+  usages:
+  - RENDER 
+  - DEPLOY
