@@ -21,7 +21,7 @@ gke:
  cluster:  projects/$PROJECT_ID/locations/asia-east1-a/clusters/sanket-test-cluster
 executionConfigs:
 - defaultPool:
-    serviceAccount: gke-sa@searce-playground-v1.iam.gserviceaccount.com
+    serviceAccount: gke-sa@$PROJECT_ID.iam.gserviceaccount.com
   usages:
   - RENDER 
   - DEPLOY   
@@ -38,7 +38,7 @@ gke:
  cluster:  projects/$PROJECT_ID//locations/asia-east1-a/clusters/sanket-prod-cluster
 executionConfigs:
 - defaultPool:
-    serviceAccount: gke-sa@searce-playground-v1.iam.gserviceaccount.com
+    serviceAccount: gke-sa@$PROJECT_ID.iam.gserviceaccount.com
   usages:
   - RENDER 
   - DEPLOY
